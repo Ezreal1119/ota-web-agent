@@ -29,7 +29,6 @@ def parser() -> argparse.ArgumentParser:
     mcp.add_argument("--transport", choices=["stdio", "streamable-http"], default="stdio")
     mcp.add_argument("--host", default="127.0.0.1")
     mcp.add_argument("--port", type=int, default=8001)
-    mcp.add_argument("--allowed-host", action="append", help="HTTP MCP 允许的 Host，如 192.168.1.10:8001")
     query = sub.add_parser("list", help="查询 OTA")
     query.add_argument("--page", type=int, default=1)
     query.add_argument("--page-size", type=int, default=50)
@@ -103,7 +102,7 @@ def main(argv=None) -> int:
                     import uvicorn
 
                     uvicorn.run(
-                        create_mcp_http_app(settings, allowed_hosts=args.allowed_host),
+                        create_mcp_http_app(settings),
                         host=args.host,
                         port=args.port,
                         access_log=False,

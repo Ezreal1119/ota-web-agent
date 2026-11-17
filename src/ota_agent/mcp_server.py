@@ -232,14 +232,12 @@ class MCPHTTPAuth:
                 )
 
 
-def create_mcp_http_app(settings: Settings, *, transport=None, allowed_hosts: list[str] | None = None):
+def create_mcp_http_app(settings: Settings, *, transport=None):
     if len(settings.api_token) < 32:
         raise ConfigurationError("HTTP MCP 要求至少 32 字符的 OTA_API_TOKEN。")
     server = create_mcp(settings, transport=transport)
-    security = TransportSecuritySettings(
-        enable_dns_rebinding_protection=True,
-        allowed_hosts=allowed_hosts or ["localhost:*", "127.0.0.1:*", "[::1]:*"],
-    )
+    # Deployment policy: authenticate with the configured Bearer token, without a Host allowlist.
+    security = TransportSecuritySettings(enable_dns_rebinding_protection=False)
     app = server.streamable_http_app(stateless_http=True, json_response=True, transport_security=security)
     app.add_middleware(MCPHTTPAuth, settings=settings)
     return app

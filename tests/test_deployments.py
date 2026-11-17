@@ -184,16 +184,25 @@ def test_real_mcp_protocol_lists_tools_and_runs_workflow(workflow, fake):
     assert "delete" not in fake.writes
 
 
-def test_http_mcp_requires_bearer_and_allows_protocol_discovery(workflow, fake):
+@pytest.mark.parametrize("host", ["testserver", "203.0.113.10:8001", "ota.example.com"])
+def test_http_mcp_requires_bearer_and_allows_protocol_discovery_on_any_host(workflow, fake, host):
     _, settings, _ = workflow
-    app = create_mcp_http_app(settings, transport=httpx.MockTransport(fake), allowed_hosts=["testserver"])
+    app = create_mcp_http_app(settings, transport=httpx.MockTransport(fake))
     with TestClient(app) as client:
-        assert client.post("/mcp", json={}).status_code == 401
+        assert client.post("/mcp", headers={"Host": host}, json={}).status_code == 401
+        assert (
+            client.post(
+                "/mcp", headers={"Host": host, "Authorization": "Bearer incorrect-token"}, json={}
+            ).status_code
+            == 401
+        )
         response = client.post(
             "/mcp",
             headers={
                 "Authorization": "Bearer " + settings.api_token,
                 "Accept": "application/json, text/event-stream",
+                "Host": host,
+                "Origin": "https://agent.example.com",
             },
             json={
                 "jsonrpc": "2.0",

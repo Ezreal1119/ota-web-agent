@@ -32,11 +32,10 @@ uv run ota mcp
 ### 远程 HTTP MCP
 
 ```bash
-uv run ota mcp --transport streamable-http --host 0.0.0.0 --port 8001 \
-  --allowed-host 192.168.1.10:8001
+uv run ota mcp --transport streamable-http --host 0.0.0.0 --port 8001
 ```
 
-客户端连接 `http://192.168.1.10:8001/mcp`，显式携带 `Authorization: Bearer <OTA_API_TOKEN>`。Host 参数改为实际 IP 或域名；默认只允许 localhost。公网部署前接 HTTPS 反向代理。
+客户端连接 `http://服务器IP:8001/mcp`，显式携带 `Authorization: Bearer <OTA_API_TOKEN>`。身份验证只使用 `.env` 中的令牌，不设置额外的 Host 白名单；可以使用服务器实际 IP 或域名访问。公网部署前接 HTTPS 反向代理。
 
 HTTP MCP 使用现有静态令牌，适用于支持配置认证请求头的客户端；尚未实现 OAuth 自动发现及授权流程。原 REST API 继续使用端口 8000，MCP 默认使用 8001，两者可以独立运行，共享同一日志目录与状态目录。
 
