@@ -1,0 +1,22 @@
+{
+  "profiles": [
+    {
+      "task_id": 24308,
+      "dev_type": "SQ68",
+      "model": "DS",
+      "standard": "PKG-XX",
+      "version": "13.25.0830.01",
+      "firmware_name": "SQ68_UFS_GMS-NOWIZARD_V13.25.0830.01-250830-N_uFWsign_VendorEN",
+      "capabilities": [
+        "gms",
+        "play_store",
+        "google_maps",
+        "chrome",
+        "no_setup_wizard"
+      ],
+      "ufs_requirement": "empty",
+      "remarks_sha256": "43eba626483314866948b8558be27a899d2e14fb854a2e41a4fce665dce94e76",
+      "evidence_source": "用户在本次对话中提供的适用说明及只读查询备注；未下载或验证 ZIP 内容。"
+    }
+  ]
+}

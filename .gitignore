@@ -1,0 +1,66 @@
+# Credentials and local configuration (keep the empty configuration template).
+.env
+.env.*
+!.env.example
+.envrc
+.direnv/
+*.local.json
+*.local.toml
+secrets/
+credentials/
+certs/
+*.p12
+*.pfx
+*.key
+*.pem
+*.crt
+*.cer
+cookies.txt
+cookies.json
+
+# OTA runtime state, audit logs, upload packages and temporary exports.
+/logs/
+/data/
+*.log
+*.jsonl
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+*.db
+*.db-*
+*.zip
+*.tmp
+*.temp
+
+# Python environments, caches and test output.
+.venv/
+.venv-*/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Build output. Keep pyproject.toml, uv.lock and .python-version in version control.
+/build/
+/dist/
+*.egg-info/
+.eggs/
+
+# Local editor and operating-system files.
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

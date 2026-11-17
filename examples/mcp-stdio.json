@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "urovo-ota": {
+      "command": "/opt/homebrew/bin/uv",
+      "args": [
+        "--directory",
+        "/Users/patrick/ota-web-agent",
+        "run",
+        "ota",
+        "--env-file",
+        "/Users/patrick/ota-web-agent/.env",
+        "mcp"
+      ]
+    }
+  }
+}

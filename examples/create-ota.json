@@ -1,0 +1,14 @@
+{
+  "os_type": "Android",
+  "dev_type": "SQ68",
+  "model": "DS",
+  "standard": "PKG-XX",
+  "version": "13.25.0830.01",
+  "language": "english",
+  "package_type": "NEW",
+  "high_version": "",
+  "force": false,
+  "silent": false,
+  "immediate": false,
+  "remarks": "PATRICK EXAMPLE"
+}
